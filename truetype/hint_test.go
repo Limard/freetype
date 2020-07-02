@@ -10,7 +10,7 @@ import (
 	"strings"
 	"testing"
 
-	"golang.org/x/image/math/fixed"
+	"github.com/Limard/image/math/fixed"
 )
 
 func TestBytecode(t *testing.T) {

@@ -6,17 +6,17 @@
 // The freetype package provides a convenient API to draw text onto an image.
 // Use the freetype/raster and freetype/truetype packages for lower level
 // control over rasterization and TrueType parsing.
-package freetype // import "github.com/golang/freetype"
+package freetype // import "github.com/Limard/freetype"
 
 import (
 	"errors"
 	"image"
 	"image/draw"
 
-	"github.com/golang/freetype/raster"
-	"github.com/golang/freetype/truetype"
-	"golang.org/x/image/font"
-	"golang.org/x/image/math/fixed"
+	"github.com/Limard/freetype/raster"
+	"github.com/Limard/freetype/truetype"
+	"github.com/Limard/image/font"
+	"github.com/Limard/image/math/fixed"
 )
 
 // These constants determine the size of the glyph cache. The cache is keyed
@@ -68,7 +68,7 @@ type Context struct {
 	src image.Image
 	// fontSize and dpi are used to calculate scale. scale is the number of
 	// 26.6 fixed point units in 1 em. hinting is the hinting policy.
-	fontSize, dpi float64
+	fontSize, dpi float32
 	scale         fixed.Int26_6
 	hinting       font.Hinting
 	// cache is the glyph cache.
@@ -77,8 +77,8 @@ type Context struct {
 
 // PointToFixed converts the given number of points (as in "a 12 point font")
 // into a 26.6 fixed point number of pixels.
-func (c *Context) PointToFixed(x float64) fixed.Int26_6 {
-	return fixed.Int26_6(x * float64(c.dpi) * (64.0 / 72.0))
+func (c *Context) PointToFixed(x float32) fixed.Int26_6 {
+	return fixed.Int26_6(x * float32(c.dpi) * (64.0 / 72.0))
 }
 
 // drawContour draws the given closed contour with the given offset.
@@ -278,7 +278,7 @@ func (c *Context) recalc() {
 }
 
 // SetDPI sets the screen resolution in dots per inch.
-func (c *Context) SetDPI(dpi float64) {
+func (c *Context) SetDPI(dpi float32) {
 	if c.dpi == dpi {
 		return
 	}
@@ -296,7 +296,7 @@ func (c *Context) SetFont(f *truetype.Font) {
 }
 
 // SetFontSize sets the font size in points (as in "a 12 point font").
-func (c *Context) SetFontSize(fontSize float64) {
+func (c *Context) SetFontSize(fontSize float32) {
 	if c.fontSize == fontSize {
 		return
 	}

@@ -9,7 +9,7 @@ import (
 	"fmt"
 	"math"
 
-	"golang.org/x/image/math/fixed"
+	"github.com/Limard/image/math/fixed"
 )
 
 // maxAbs returns the maximum of abs(a) and abs(b).
@@ -41,9 +41,9 @@ func pDot(p fixed.Point26_6, q fixed.Point26_6) fixed.Int52_12 {
 // pLen returns the length of the vector p.
 func pLen(p fixed.Point26_6) fixed.Int26_6 {
 	// TODO(nigeltao): use fixed point math.
-	x := float64(p.X)
-	y := float64(p.Y)
-	return fixed.Int26_6(math.Sqrt(x*x + y*y))
+	x := float32(p.X)
+	y := float32(p.Y)
+	return fixed.Int26_6(math.Sqrt(float64(x*x) + float64(y*y)))
 }
 
 // pNorm returns the vector p normalized to the given length, or zero if p is

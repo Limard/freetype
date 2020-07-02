@@ -5,7 +5,7 @@
 
 // +build example
 //
-// This build tag means that "go install github.com/golang/freetype/..."
+// This build tag means that "go install github.com/Limard/freetype/..."
 // doesn't install this example program. Use "go run main.go" to run it or "go
 // install -tags=example" to install it.
 
@@ -20,8 +20,8 @@ import (
 	"log"
 	"os"
 
-	"github.com/golang/freetype/raster"
-	"golang.org/x/image/math/fixed"
+	"github.com/Limard/freetype/raster"
+	"github.com/Limard/image/math/fixed"
 )
 
 func p(x, y int) fixed.Point26_6 {
@@ -54,7 +54,7 @@ func main() {
 	draw.Draw(rgba, image.Rect(0, h/2, w, h), image.White, image.ZP, draw.Src)
 	mask := image.NewAlpha(image.Rect(0, 0, 50, 50))
 	painter := raster.NewAlphaSrcPainter(mask)
-	gammas := []float64{1.0 / 10.0, 1.0 / 3.0, 1.0 / 2.0, 2.0 / 3.0, 4.0 / 5.0, 1.0, 5.0 / 4.0, 3.0 / 2.0, 2.0, 3.0, 10.0}
+	gammas := []float32{1.0 / 10.0, 1.0 / 3.0, 1.0 / 2.0, 2.0 / 3.0, 4.0 / 5.0, 1.0, 5.0 / 4.0, 3.0 / 2.0, 2.0, 3.0, 10.0}
 	for i, g := range gammas {
 		draw.Draw(mask, mask.Bounds(), image.Transparent, image.ZP, draw.Src)
 		r.Rasterize(raster.NewGammaCorrectionPainter(painter, g))

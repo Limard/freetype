@@ -5,7 +5,7 @@
 
 // +build example
 //
-// This build tag means that "go install github.com/golang/freetype/..."
+// This build tag means that "go install github.com/Limard/freetype/..."
 // doesn't install this example program. Use "go run main.go" to run it or "go
 // install -tags=example" to install it.
 
@@ -27,8 +27,8 @@ import (
 	"math"
 	"os"
 
-	"github.com/golang/freetype/raster"
-	"golang.org/x/image/math/fixed"
+	"github.com/Limard/freetype/raster"
+	"github.com/Limard/image/math/fixed"
 )
 
 // pDot returns the dot product p·q.
@@ -56,7 +56,7 @@ func main() {
 		cx := fixed.Int26_6(6400 + 12800*(i%4))
 		cy := fixed.Int26_6(640 + 8000*(i/4))
 		c := fixed.Point26_6{X: cx, Y: cy}
-		theta := math.Pi * (0.5 + 0.5*float64(i)/(n-1))
+		theta := math.Pi * (0.5 + 0.5*float32(i)/(n-1))
 		dx := fixed.Int26_6(r * math.Cos(theta))
 		dy := fixed.Int26_6(r * math.Sin(theta))
 		d := fixed.Point26_6{X: dx, Y: dy}
@@ -81,7 +81,7 @@ func main() {
 		cx := fixed.Int26_6(6400 + 12800*(i%4))
 		cy := fixed.Int26_6(640 + 8000*(i/4))
 		for j := 0; j < n; j++ {
-			theta := math.Pi * float64(j) / (n - 1)
+			theta := math.Pi * float32(j) / (n - 1)
 			dx := fixed.Int26_6(r * math.Cos(theta))
 			dy := fixed.Int26_6(r * math.Sin(theta))
 			m.Set(int((cx+dx)/64), int((cy+dy)/64), color.RGBA{255, 255, 0, 255})

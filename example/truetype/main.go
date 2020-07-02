@@ -5,7 +5,7 @@
 
 // +build example
 //
-// This build tag means that "go install github.com/golang/freetype/..."
+// This build tag means that "go install github.com/Limard/freetype/..."
 // doesn't install this example program. Use "go run main.go" to run it or "go
 // install -tags=example" to install it.
 
@@ -17,9 +17,9 @@ import (
 	"io/ioutil"
 	"log"
 
-	"github.com/golang/freetype/truetype"
-	"golang.org/x/image/font"
-	"golang.org/x/image/math/fixed"
+	"github.com/Limard/freetype/truetype"
+	"github.com/Limard/image/font"
+	"github.com/Limard/image/math/fixed"
 )
 
 var fontfile = flag.String("fontfile", "../../testdata/luxisr.ttf", "filename of the ttf font")

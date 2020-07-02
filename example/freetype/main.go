@@ -5,7 +5,7 @@
 
 // +build example
 //
-// This build tag means that "go install github.com/golang/freetype/..."
+// This build tag means that "go install github.com/Limard/freetype/..."
 // doesn't install this example program. Use "go run main.go" to run it or "go
 // install -tags=example" to install it.
 
@@ -23,8 +23,8 @@ import (
 	"log"
 	"os"
 
-	"github.com/golang/freetype"
-	"golang.org/x/image/font"
+	"github.com/Limard/freetype"
+	"github.com/Limard/image/font"
 )
 
 var (

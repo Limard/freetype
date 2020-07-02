@@ -6,12 +6,11 @@
 package truetype
 
 import (
+	"github.com/Limard/freetype/raster"
+	"github.com/Limard/image/font"
+	"github.com/Limard/image/math/fixed"
 	"image"
 	"math"
-
-	"github.com/golang/freetype/raster"
-	"golang.org/x/image/font"
-	"golang.org/x/image/math/fixed"
 )
 
 func powerOf2(i int) bool {
@@ -23,12 +22,12 @@ type Options struct {
 	// Size is the font size in points, as in "a 10 point font size".
 	//
 	// A zero value means to use a 12 point font size.
-	Size float64
+	Size float32
 
 	// DPI is the dots-per-inch resolution.
 	//
 	// A zero value means to use 72 DPI.
-	DPI float64
+	DPI float32
 
 	// Hinting is how to quantize the glyph nodes.
 	//
@@ -68,14 +67,14 @@ type Options struct {
 	SubPixelsY int
 }
 
-func (o *Options) size() float64 {
+func (o *Options) size() float32 {
 	if o != nil && o.Size > 0 {
 		return o.Size
 	}
 	return 12
 }
 
-func (o *Options) dpi() float64 {
+func (o *Options) dpi() float32 {
 	if o != nil && o.DPI > 0 {
 		return o.DPI
 	}
@@ -252,12 +251,12 @@ func (a *face) Close() error { return nil }
 
 // Metrics satisfies the font.Face interface.
 func (a *face) Metrics() font.Metrics {
-	scale := float64(a.scale)
-	fupe := float64(a.f.FUnitsPerEm())
+	scale := float32(a.scale)
+	fupe := float32(a.f.FUnitsPerEm())
 	return font.Metrics{
 		Height:  a.scale,
-		Ascent:  fixed.Int26_6(math.Ceil(scale * float64(+a.f.ascent) / fupe)),
-		Descent: fixed.Int26_6(math.Ceil(scale * float64(-a.f.descent) / fupe)),
+		Ascent:  fixed.Int26_6(math.Ceil(float64(scale * float32(+a.f.ascent) / fupe))),
+		Descent: fixed.Int26_6(math.Ceil(float64(scale * float32(-a.f.descent) / fupe))),
 	}
 }
 

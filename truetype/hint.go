@@ -12,7 +12,7 @@ import (
 	"errors"
 	"math"
 
-	"golang.org/x/image/math/fixed"
+	"github.com/Limard/image/math/fixed"
 )
 
 const (
@@ -1641,8 +1641,8 @@ func skipInstructionPayload(program []byte, pc int) (newPC int, ok bool) {
 type f2dot14 int16
 
 func normalize(x, y f2dot14) [2]f2dot14 {
-	fx, fy := float64(x), float64(y)
-	l := 0x4000 / math.Hypot(fx, fy)
+	fx, fy := float32(x), float32(y)
+	l := 0x4000 / float32(math.Hypot(float64(fx), float64(fy)))
 	fx *= l
 	if fx >= 0 {
 		fx += 0.5
